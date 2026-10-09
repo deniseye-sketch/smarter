@@ -1,8 +1,8 @@
 .. _onboarding_developers:
 
-=============================================
-Getting Started: Using Claude Code with Smarter
-=============================================
+================================================
+Onboarding Tutorial: Using Claude Code with Smarter
+================================================
 
 Welcome to the Northern Aurora Power & Light (NAPL) custom programming onboarding guide. This tutorial outlines how to configure and utilize **Claude Code** as your AI coding assistant, leveraging **Smarter** as our centralized on-premise LLM host and authoring platform.
 

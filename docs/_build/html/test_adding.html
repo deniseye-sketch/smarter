@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search &mdash; Smarter Documentation v0.1.0 documentation</title>
+  <title>Adding Anthropic and Claude Code to Smarter &mdash; Smarter Documentation v0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_contributors.css?v=fe9086e2" />
@@ -15,8 +16,7 @@
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3960652c" />
 
   
-    <link rel="canonical" href="https://docs.example.com/search.html" />
-    
+    <link rel="canonical" href="https://docs.example.com/test_adding.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=fa47ad08"></script>
@@ -26,10 +26,9 @@
       <script src="_static/copybutton.js?v=f281be69"></script>
       <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script src="_static/js/theme.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Onboarding Tutorial: Using Claude Code with Smarter" href="onboarding_developers.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,7 +43,7 @@
             Smarter Documentation
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -1199,7 +1198,7 @@
 <li class="toctree-l1"><a class="reference internal" href="external-links/youtube.html">Smarter on YouTube</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="add_llm_provider.html">How-To: Adding Anthropic as an LLM Provider</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="add_llm_provider.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_llm_provider.html#configuration-steps">Configuration Steps</a><ul>
@@ -1211,18 +1210,28 @@
 <li class="toctree-l2"><a class="reference internal" href="add_llm_provider.html#verification">Verification</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="onboarding_developers.html">Developer Onboarding Tutorial: Using Claude Code with Smarter</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="onboarding_developers.html">Onboarding Tutorial: Using Claude Code with Smarter</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#goal">Goal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#concept-overview">Concept Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#step-by-step">Step-by-Step</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="onboarding_developers.html#part-1-register-anthropic-administrator">Part 1: Register Anthropic (administrator)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="onboarding_developers.html#part-2-connect-claude-code-every-programmer">Part 2: Connect Claude Code (every programmer)</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#step-by-step-workflow">Step-by-Step Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#proof-of-concept">Proof of Concept</a></li>
 <li class="toctree-l2"><a class="reference internal" href="onboarding_developers.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adding Anthropic and Claude Code to Smarter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#concept-overview">Concept Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-by-step">Step-by-Step</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#part-1-register-anthropic-administrator">Part 1: Register Anthropic (administrator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#part-2-connect-claude-code-every-programmer">Part 2: Connect Claude Code (every programmer)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#proof-of-concept">Proof of Concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -1241,8 +1250,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Search</li>
+      <li class="breadcrumb-item active">Adding Anthropic and Claude Code to Smarter</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/test_adding.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -1250,22 +1260,253 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search functionality.
-    </p>
-  </div>
-  </noscript>
+  <section id="adding-anthropic-and-claude-code-to-smarter">
+<span id="adding-anthropic-claude-code"></span><h1>Adding Anthropic and Claude Code to Smarter<a class="headerlink" href="#adding-anthropic-and-claude-code-to-smarter" title="Link to this heading"></a></h1>
+<section id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Link to this heading"></a></h2>
+<p>We will use Claude Code with Smarter to write and test a small Python
+function, with every request routed through NAPL’s own Smarter platform
+instead of going straight to Anthropic.</p>
+<p>Along the way you will register Anthropic as an LLM provider (one-time,
+administrator task) and connect your own Claude Code installation to it
+(every programmer).</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>You are expected to be comfortable with:</p>
+<ul class="simple">
+<li><p>A command line (PowerShell, bash, or zsh) and environment variables.</p></li>
+<li><p>Reading and writing YAML.</p></li>
+<li><p>Python and <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, and Node.js/npm (Claude Code is installed with npm).</p></li>
+<li><p>REST concepts: base URLs, API keys, HTTP status codes.</p></li>
+</ul>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h2>
+<p>Have the following ready before you begin.</p>
+<p><strong>Administrator, one time only (Part 1)</strong></p>
+<ul class="simple">
+<li><p>Smarter v0.16.0 or later, running, with an administrator account.</p></li>
+<li><p>The Smarter CLI, installed and logged in. See the
+<a class="reference external" href="https://docs.smarter.sh/smarter-framework/smarter-cli.html">Smarter CLI</a>
+documentation.</p></li>
+<li><p>An Anthropic API key from <a class="reference external" href="https://console.anthropic.com/">console.anthropic.com</a>.</p></li>
+<li><p>Shell access to the Smarter deployment, to edit <code class="docutils literal notranslate"><span class="pre">.env</span></code> and run management
+commands.</p></li>
+</ul>
+<p><strong>Every programmer (Part 2)</strong></p>
+<ul class="simple">
+<li><p>Your existing Smarter login.</p></li>
+<li><p>Node.js 18 or later.</p></li>
+<li><p>An empty project folder with Python and <code class="docutils literal notranslate"><span class="pre">pytest</span></code> available.</p></li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Never commit API keys, Anthropic or Smarter, to version control.</p>
+</div>
+</section>
+<section id="concept-overview">
+<h2>Concept Overview<a class="headerlink" href="#concept-overview" title="Link to this heading"></a></h2>
+<p>Four names are easy to mix up, so fix them first:</p>
+<ul class="simple">
+<li><p><strong>Claude</strong> is the family of models (for example Sonnet and Opus).</p></li>
+<li><p><strong>Anthropic</strong> is the <em>provider</em> that hosts those models behind an API.</p></li>
+<li><p><strong>Claude Code</strong> is a coding agent that runs in your terminal. It is a
+<em>client</em> of the Anthropic API, not a model, so there is nothing called
+“Claude Code” to register. What you register is the provider and its model.</p></li>
+<li><p><strong>Smarter</strong> sits in the middle and governs access.</p></li>
+</ul>
+<p>Smarter manages every resource the same way: you write a YAML file called a
+Smarter API Manifest (SAM) and apply it with the CLI, much like Kubernetes.
+A manifest has four parts: <code class="docutils literal notranslate"><span class="pre">apiVersion</span></code> (always <code class="docutils literal notranslate"><span class="pre">smarter.sh/v1</span></code>),
+<code class="docutils literal notranslate"><span class="pre">kind</span></code>, <code class="docutils literal notranslate"><span class="pre">metadata</span></code> (name, description, version) and <code class="docutils literal notranslate"><span class="pre">spec</span></code>.</p>
+<p>Two resource kinds matter here:</p>
+<dl class="simple">
+<dt><strong>Provider</strong></dt><dd><p>Registers an LLM backend and one of its models. On apply, Smarter calls
+the provider’s API to verify that the model is reachable.</p>
+</dd>
+<dt><strong>Proxy</strong></dt><dd><p>Gives passthrough access to the provider’s API. Callers use the
+provider’s own SDK or tool unchanged, but point it at a Smarter URL and
+authenticate with a <em>Smarter</em> API key. Smarter adds the real Anthropic key
+(stored as a Secret), forwards the request, and records token usage. The
+Anthropic key never reaches developers’ machines and can be rotated in one
+place.</p>
+</dd>
+</dl>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Claude Code ──Smarter API key──▶ Smarter Proxy ──Anthropic key──▶ Anthropic API
+</pre></div>
+</div>
+</section>
+<section id="step-by-step">
+<h2>Step-by-Step<a class="headerlink" href="#step-by-step" title="Link to this heading"></a></h2>
+<section id="part-1-register-anthropic-administrator">
+<h3>Part 1: Register Anthropic (administrator)<a class="headerlink" href="#part-1-register-anthropic-administrator" title="Link to this heading"></a></h3>
+<p><strong>Step 1. Add the Anthropic key to Smarter.</strong>
+Add this line to the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file at the root of the Smarter deployment,
+then restart so it is loaded:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SMARTER_ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-xxxxxxxxxxxxxxxx
+make<span class="w"> </span>restart
+</pre></div>
+</div>
+<p><strong>Step 2. Generate a template manifest.</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smarter<span class="w"> </span>manifest<span class="w"> </span>provider
+</pre></div>
+</div>
+<p>This prints a valid example. Compare your own file against it if validation
+fails later.</p>
+<p><strong>Step 3. Write the Provider manifest.</strong> Save as <code class="docutils literal notranslate"><span class="pre">anthropic-sonnet.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smarter.sh/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Provider</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anthropic-sonnet</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Anthropic Claude Sonnet, for NAPL custom programming</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">provider</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anthropic</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">claude-sonnet-4-6</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Model identifiers are case-sensitive and must match Anthropic’s published
+names exactly. Check
+<a class="reference external" href="https://docs.anthropic.com/">Anthropic’s model list</a> for current names.
+To offer more than one model, write one manifest per model.</p>
+</div>
+<p><strong>Step 4. Apply it and confirm it is active.</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smarter<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>anthropic-sonnet.yaml
+smarter<span class="w"> </span>describe<span class="w"> </span>provider<span class="w"> </span>anthropic-sonnet
+</pre></div>
+</div>
+<p>Verification is asynchronous. If the <code class="docutils literal notranslate"><span class="pre">status</span></code> block shows <code class="docutils literal notranslate"><span class="pre">pending</span></code>,
+wait 30 seconds and run <code class="docutils literal notranslate"><span class="pre">describe</span></code> again.</p>
+<p><strong>Step 5. Confirm the Anthropic Proxy exists.</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smarter<span class="w"> </span>get<span class="w"> </span>proxies
+</pre></div>
+</div>
+<p>Smarter ships a built-in <code class="docutils literal notranslate"><span class="pre">anthropic</span></code> Proxy that allows only inference
+paths (<code class="docutils literal notranslate"><span class="pre">v1/messages</span></code>, <code class="docutils literal notranslate"><span class="pre">v1/messages/count_tokens</span></code> and <code class="docutils literal notranslate"><span class="pre">v1/models</span></code>). If it
+is not listed, for example because you added the key after first deployment,
+run these on the Smarter deployment, then list the proxies again:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>initialize_providers
+python<span class="w"> </span>manage.py<span class="w"> </span>add_builtin_proxies
+</pre></div>
+</div>
+</section>
+<section id="part-2-connect-claude-code-every-programmer">
+<h3>Part 2: Connect Claude Code (every programmer)<a class="headerlink" href="#part-2-connect-claude-code-every-programmer" title="Link to this heading"></a></h3>
+<p><strong>Step 6. Create a Smarter API key.</strong>
+In the Smarter web console, open <strong>API Keys</strong> and create a key for yourself.
+Copy it immediately. This is the only key you will ever give Claude Code.</p>
+<p><strong>Step 7. Install Claude Code.</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@anthropic-ai/claude-code
+claude<span class="w"> </span>--version
+</pre></div>
+</div>
+<p><strong>Step 8. Point Claude Code at Smarter.</strong> Claude Code reads its endpoint and
+credentials from environment variables. Use the Proxy URL, which stops at
+the proxy name, <em>without</em> <code class="docutils literal notranslate"><span class="pre">/v1</span></code>, because the client adds that itself.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># macOS / Linux</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_BASE_URL</span><span class="o">=</span><span class="s2">&quot;https://&lt;your-smarter-host&gt;/api/v1/proxy/anthropic&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;your Smarter API key&gt;&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_MODEL</span><span class="o">=</span><span class="s2">&quot;claude-sonnet-4-6&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Windows PowerShell</span>
+<span class="nv">$env:ANTHROPIC_BASE_URL</span> <span class="p">=</span> <span class="s2">&quot;https://&lt;your-smarter-host&gt;/api/v1/proxy/anthropic&quot;</span>
+<span class="nv">$env:ANTHROPIC_API_KEY</span>  <span class="p">=</span> <span class="s2">&quot;&lt;your Smarter API key&gt;&quot;</span>
+<span class="nv">$env:ANTHROPIC_MODEL</span>    <span class="p">=</span> <span class="s2">&quot;claude-sonnet-4-6&quot;</span>
+</pre></div>
+</div>
+<p>Use the same model name you registered in Step 3. To make these permanent,
+add them to your shell profile.</p>
+<p><strong>Step 9. Start Claude Code.</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>leap-year-demo<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>leap-year-demo
+claude
+</pre></div>
+</div>
+<p>If Claude Code asks whether to use the custom API key, approve it.</p>
+</section>
+</section>
+<section id="proof-of-concept">
+<h2>Proof of Concept<a class="headerlink" href="#proof-of-concept" title="Link to this heading"></a></h2>
+<p>At the Claude Code prompt, enter:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Create leap_year.py with a function is_leap_year(year), and
+test_leap_year.py with pytest tests covering 1900, 2000, 2024 and 2023.
+Then run the tests.
+</pre></div>
+</div>
+<p>Approve the file writes when prompted. You should see Claude Code create both
+files and run <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, ending with output similar to:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>======================== 4 passed in 0.02s ========================
+</pre></div>
+</div>
+<p>That result proves the whole chain works: Claude Code reached Claude through
+your Smarter Proxy using only your Smarter key. As a second check, the
+administrator’s <code class="docutils literal notranslate"><span class="pre">smarter</span> <span class="pre">describe</span> <span class="pre">provider</span> <span class="pre">anthropic-sonnet</span></code> output should
+include:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">status</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">verified</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>401 Unauthorized.</strong></dt><dd><p>The Smarter API key is missing, mistyped, or revoked. Check that
+<code class="docutils literal notranslate"><span class="pre">ANTHROPIC_API_KEY</span></code> is set <em>in the shell where you started</em> <code class="docutils literal notranslate"><span class="pre">claude</span></code>,
+and that it holds the Smarter key, not an Anthropic <code class="docutils literal notranslate"><span class="pre">sk-ant-</span></code> key.</p>
+</dd>
+<dt><strong>404 ``proxy_not_found``.</strong></dt><dd><p>The URL is wrong. It must end in <code class="docutils literal notranslate"><span class="pre">/api/v1/proxy/anthropic</span></code>. Do not add
+<code class="docutils literal notranslate"><span class="pre">/v1</span></code> or <code class="docutils literal notranslate"><span class="pre">/v1/messages</span></code>.</p>
+</dd>
+<dt><strong>403 ``path_not_allowed``.</strong></dt><dd><p>The request used a path the Proxy does not permit. The built-in Anthropic
+Proxy allows only <code class="docutils literal notranslate"><span class="pre">v1/messages</span></code>, <code class="docutils literal notranslate"><span class="pre">v1/messages/count_tokens</span></code> and
+<code class="docutils literal notranslate"><span class="pre">v1/models</span></code>. Ask your administrator before widening <code class="docutils literal notranslate"><span class="pre">allowedPaths</span></code>.</p>
+</dd>
+<dt><strong>402 ``budget_exceeded``.</strong></dt><dd><p>A Smarter budget has locked further charges for you, your team, or the
+Proxy. Contact your administrator.</p>
+</dd>
+<dt><strong>503 ``proxy_misconfigured``.</strong></dt><dd><p>The Proxy has no usable Anthropic key. The administrator should confirm
+<code class="docutils literal notranslate"><span class="pre">SMARTER_ANTHROPIC_API_KEY</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code>, restart Smarter, and rerun the
+two <code class="docutils literal notranslate"><span class="pre">manage.py</span></code> commands from Step 5.</p>
+</dd>
+<dt><strong>Provider status stays ``pending`` or shows “verification failed”.</strong></dt><dd><p>Wait 30 seconds first. If it persists, the Anthropic key is invalid or
+revoked: create a new one, update <code class="docutils literal notranslate"><span class="pre">.env</span></code>, and restart.</p>
+</dd>
+<dt><strong>Apply error: “Model not found”.</strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">model</span></code> value does not match Anthropic’s identifier. Identifiers are
+case-sensitive.</p>
+</dd>
+<dt><strong>Manifest validation errors.</strong></dt><dd><p>Almost always YAML indentation. Compare your file with the output of
+<code class="docutils literal notranslate"><span class="pre">smarter</span> <span class="pre">manifest</span> <span class="pre">provider</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.smarter.sh/smarter-resources/smarter-provider.html">Smarter Provider</a></p></li>
+<li><p><a class="reference external" href="https://docs.smarter.sh/smarter-resources/smarter-proxy.html">Smarter Proxy</a></p></li>
+<li><p><a class="reference external" href="https://docs.smarter.sh/smarter-resources/provider/manifest.html">Smarter API Manifests</a></p></li>
+</ul>
+</div>
+</section>
+</section>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+    <a
+      href="onboarding_developers.html"
+      class="btn btn-neutral float-left"
+      title="Onboarding Tutorial: Using Claude Code with Smarter"
+      accesskey="p"
+      rel="prev"
+      ><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a
+    >
+  </div>
 
   <hr />
 
@@ -1292,14 +1533,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-  <script>
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script id="searchindexloader"></script>
-   
-
+  </script> 
 
 </body>
 </html>

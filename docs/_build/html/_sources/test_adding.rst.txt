@@ -1,8 +1,7 @@
 .. _adding-anthropic-claude-code:
 
-=============================================================
-Developer Onboarding Tutorial: Using Claude Code with Smarter
-=============================================================
+Adding Anthropic and Claude Code to Smarter
+===========================================
 
 Goal
 ----

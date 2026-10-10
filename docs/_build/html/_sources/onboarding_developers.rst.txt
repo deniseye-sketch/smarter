@@ -1,97 +1,275 @@
-.. _onboarding_developers:
+.. _adding-anthropic-claude-code:
 
-================================================
-Onboarding Tutorial: Using Claude Code with Smarter
-================================================
-
-Welcome to the Northern Aurora Power & Light (NAPL) custom programming onboarding guide. This tutorial outlines how to configure and utilize **Claude Code** as your AI coding assistant, leveraging **Smarter** as our centralized on-premise LLM host and authoring platform.
+=============================================================
+Developer Onboarding Tutorial: Using Claude Code with Smarter
+=============================================================
 
 Goal
-====
-We will use Claude Code with Smarter to accelerate software development, streamline code refactoring, and automate technical workflows directly from your local development environment.
+----
+
+We will use Claude Code with Smarter to write and test a small Python
+function, with every request routed through NAPL's own Smarter platform
+instead of going straight to Anthropic.
+
+Along the way you will register Anthropic as an LLM provider (one-time,
+administrator task) and connect your own Claude Code installation to it
+(every programmer).
 
 Prerequisites
-=============
-Before beginning this guide, ensure you have:
-* An active **Smarter** platform account and login credentials.
-* **Node.js** (v18 or higher) and **npm** installed on your local machine (required for running the Claude Code CLI).
-* A code editor (such as VS Code) installed and configured.
-* Basic familiarity with command-line interfaces (Terminal, PowerShell, or Bash) and Git workflows.
+-------------
+
+You are expected to be comfortable with:
+
+- A command line (PowerShell, bash, or zsh) and environment variables.
+- Reading and writing YAML.
+- Python and ``pytest``, and Node.js/npm (Claude Code is installed with npm).
+- REST concepts: base URLs, API keys, HTTP status codes.
 
 Setup
-=====
-Complete the following initialization steps to connect your local development environment to the Smarter platform:
+-----
 
-1. **Obtain Your Smarter API Token:**
-   Log into your Smarter web dashboard, navigate to your user profile settings, and generate a personal API access token.
-2. **Configure Environment Variables:**
-   Set the required environment variables in your local shell profile (e.g., `~/.bashrc`, `~/.zshrc`, or PowerShell profile) so that Claude Code routes requests through Smarter:
+Have the following ready before you begin.
 
-   .. code-block:: bash
+**Administrator, one time only (Part 1)**
 
-      export ANTHROPIC_BASE_URL="https://smarter.napl.internal/v1"
-      export ANTHROPIC_API_KEY="your-smarter-api-token-here"
+- Smarter v0.16.0 or later, running, with an administrator account.
+- The Smarter CLI, installed and logged in. See the
+  `Smarter CLI <https://docs.smarter.sh/smarter-framework/smarter-cli.html>`__
+  documentation.
+- An Anthropic API key from `console.anthropic.com <https://console.anthropic.com/>`__.
+- Shell access to the Smarter deployment, to edit ``.env`` and run management
+  commands.
 
-3. **Install Claude Code CLI:**
-   Install the Claude Code command-line interface globally via npm:
+**Every programmer (Part 2)**
 
-   .. code-block:: bash
+- Your existing Smarter login.
+- Node.js 18 or later.
+- An empty project folder with Python and ``pytest`` available.
 
-      npm install -g @anthropic-ai/claude-code
+.. danger::
+
+   Never commit API keys, Anthropic or Smarter, to version control.
 
 Concept Overview
-================
-Understanding how components interact within the NAPL infrastructure ensures smooth daily usage:
+----------------
 
-* **Smarter Platform:** Acts as our centralized, secure on-premise gateway. It intercepts LLM requests, handles enterprise authentication, and logs token consumption for accounting codes.
-* **Claude Code CLI:** Runs directly inside your repository workspace in your terminal, allowing you to ask questions, generate code snippets, and execute safe automated edits across multiple files.
-* **Routing:** By pointing your environment variables to Smarter's endpoint, all prompts and code context flow securely through corporate infrastructure without leaving our network boundaries.
+Four names are easy to mix up, so fix them first:
 
-Step-by-Step Workflow
-=====================
+- **Claude** is the family of models (for example Sonnet and Opus).
+- **Anthropic** is the *provider* that hosts those models behind an API.
+- **Claude Code** is a coding agent that runs in your terminal. It is a
+  *client* of the Anthropic API, not a model, so there is nothing called
+  "Claude Code" to register. What you register is the provider and its model.
+- **Smarter** sits in the middle and governs access.
 
-1. **Navigate to Your Project Directory:**
-   Open your terminal and change directory to any active Git repository you are working on:
+Smarter manages every resource the same way: you write a YAML file called a
+Smarter API Manifest (SAM) and apply it with the CLI, much like Kubernetes.
+A manifest has four parts: ``apiVersion`` (always ``smarter.sh/v1``),
+``kind``, ``metadata`` (name, description, version) and ``spec``.
 
-   .. code-block:: bash
+Two resource kinds matter here:
 
-      cd /path/to/your/project
+**Provider**
+   Registers an LLM backend and one of its models. On apply, Smarter calls
+   the provider's API to verify that the model is reachable.
 
-2. **Launch Claude Code:**
-   Initialize Claude Code in your workspace by running:
+**Proxy**
+   Gives passthrough access to the provider's API. Callers use the
+   provider's own SDK or tool unchanged, but point it at a Smarter URL and
+   authenticate with a *Smarter* API key. Smarter adds the real Anthropic key
+   (stored as a Secret), forwards the request, and records token usage. The
+   Anthropic key never reaches developers' machines and can be rotated in one
+   place.
 
-   .. code-block:: bash
+.. code-block:: text
 
-      claude
+   Claude Code ──Smarter API key──▶ Smarter Proxy ──Anthropic key──▶ Anthropic API
 
-3. **Execute Your First Prompt:**
-   Once the interactive interface loads, type a natural language prompt to test code generation or review:
+Step-by-Step
+------------
 
-   > "Analyze this repository structure and summarize the main Python modules."
+Part 1: Register Anthropic (administrator)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4. **Review and Apply Changes:**
-   Claude Code will propose file edits or run terminal commands. Review the proposed changes carefully before approving them in the prompt interface.
-
-Proof of Concept
-================
-To verify your setup is fully functional, run a quick self-test. Inside your project root, invoke Claude Code to generate a unit test template:
+**Step 1. Add the Anthropic key to Smarter.**
+Add this line to the ``.env`` file at the root of the Smarter deployment,
+then restart so it is loaded:
 
 .. code-block:: bash
 
-   claude -p "Generate a basic pytest skeleton for a utility function that validates user email strings."
+   SMARTER_ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxx
+   make restart
 
-**Expected Result:** Claude Code should successfully query the Smarter platform, output a clean, syntax-valid Python test file snippet directly in your terminal, and confirm token usage within acceptable response times.
+**Step 2. Generate a template manifest.**
+
+.. code-block:: bash
+
+   smarter manifest provider
+
+This prints a valid example. Compare your own file against it if validation
+fails later.
+
+**Step 3. Write the Provider manifest.** Save as ``anthropic-sonnet.yaml``:
+
+.. code-block:: yaml
+
+   apiVersion: smarter.sh/v1
+   kind: Provider
+   metadata:
+     name: anthropic-sonnet
+     description: Anthropic Claude Sonnet, for NAPL custom programming
+     version: 1.0.0
+   spec:
+     provider:
+       name: anthropic
+       model: claude-sonnet-4-6
+
+.. note::
+
+   Model identifiers are case-sensitive and must match Anthropic's published
+   names exactly. Check
+   `Anthropic's model list <https://docs.anthropic.com/>`__ for current names.
+   To offer more than one model, write one manifest per model.
+
+**Step 4. Apply it and confirm it is active.**
+
+.. code-block:: bash
+
+   smarter apply -f anthropic-sonnet.yaml
+   smarter describe provider anthropic-sonnet
+
+Verification is asynchronous. If the ``status`` block shows ``pending``,
+wait 30 seconds and run ``describe`` again.
+
+**Step 5. Confirm the Anthropic Proxy exists.**
+
+.. code-block:: bash
+
+   smarter get proxies
+
+Smarter ships a built-in ``anthropic`` Proxy that allows only inference
+paths (``v1/messages``, ``v1/messages/count_tokens`` and ``v1/models``). If it
+is not listed, for example because you added the key after first deployment,
+run these on the Smarter deployment, then list the proxies again:
+
+.. code-block:: bash
+
+   python manage.py initialize_providers
+   python manage.py add_builtin_proxies
+
+Part 2: Connect Claude Code (every programmer)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Step 6. Create a Smarter API key.**
+In the Smarter web console, open **API Keys** and create a key for yourself.
+Copy it immediately. This is the only key you will ever give Claude Code.
+
+**Step 7. Install Claude Code.**
+
+.. code-block:: bash
+
+   npm install -g @anthropic-ai/claude-code
+   claude --version
+
+**Step 8. Point Claude Code at Smarter.** Claude Code reads its endpoint and
+credentials from environment variables. Use the Proxy URL, which stops at
+the proxy name, *without* ``/v1``, because the client adds that itself.
+
+.. code-block:: bash
+
+   # macOS / Linux
+   export ANTHROPIC_BASE_URL="https://<your-smarter-host>/api/v1/proxy/anthropic"
+   export ANTHROPIC_API_KEY="<your Smarter API key>"
+   export ANTHROPIC_MODEL="claude-sonnet-4-6"
+
+.. code-block:: powershell
+
+   # Windows PowerShell
+   $env:ANTHROPIC_BASE_URL = "https://<your-smarter-host>/api/v1/proxy/anthropic"
+   $env:ANTHROPIC_API_KEY  = "<your Smarter API key>"
+   $env:ANTHROPIC_MODEL    = "claude-sonnet-4-6"
+
+Use the same model name you registered in Step 3. To make these permanent,
+add them to your shell profile.
+
+**Step 9. Start Claude Code.**
+
+.. code-block:: bash
+
+   mkdir leap-year-demo && cd leap-year-demo
+   claude
+
+If Claude Code asks whether to use the custom API key, approve it.
+
+Proof of Concept
+----------------
+
+At the Claude Code prompt, enter:
+
+.. code-block:: text
+
+   Create leap_year.py with a function is_leap_year(year), and
+   test_leap_year.py with pytest tests covering 1900, 2000, 2024 and 2023.
+   Then run the tests.
+
+Approve the file writes when prompted. You should see Claude Code create both
+files and run ``pytest``, ending with output similar to:
+
+.. code-block:: text
+
+   ======================== 4 passed in 0.02s ========================
+
+That result proves the whole chain works: Claude Code reached Claude through
+your Smarter Proxy using only your Smarter key. As a second check, the
+administrator's ``smarter describe provider anthropic-sonnet`` output should
+include:
+
+.. code-block:: yaml
+
+   status:
+     verified: true
+     active: true
 
 Troubleshooting
-===============
-If you encounter issues during setup or execution, check the following common pitfalls:
+---------------
 
-* **Authentication Errors (401 / 403):** 
-  * *Cause:* Invalid or expired Smarter API token, or missing header configuration.
-  * *Solution:* Regenerate your token in the Smarter dashboard and verify that your `ANTHROPIC_API_KEY` environment variable is exported correctly.
-* **Connection Timeout / DNS Resolution Failure:**
-  * *Cause:* Working off-network without an active NAPL VPN connection.
-  * *Solution:* Ensure you are connected to the corporate VPN so your machine can reach the on-premise Smarter gateway (`smarter.napl.internal`).
-* **Model Not Found Error:**
-  * *Cause:* Requesting a model identifier that hasn't been enabled by administrators.
-  * *Solution:* Confirm with your team lead that the default Claude model identifier matches what is registered in the Smarter provider configuration.
+**401 Unauthorized.**
+   The Smarter API key is missing, mistyped, or revoked. Check that
+   ``ANTHROPIC_API_KEY`` is set *in the shell where you started* ``claude``,
+   and that it holds the Smarter key, not an Anthropic ``sk-ant-`` key.
+
+**404 ``proxy_not_found``.**
+   The URL is wrong. It must end in ``/api/v1/proxy/anthropic``. Do not add
+   ``/v1`` or ``/v1/messages``.
+
+**403 ``path_not_allowed``.**
+   The request used a path the Proxy does not permit. The built-in Anthropic
+   Proxy allows only ``v1/messages``, ``v1/messages/count_tokens`` and
+   ``v1/models``. Ask your administrator before widening ``allowedPaths``.
+
+**402 ``budget_exceeded``.**
+   A Smarter budget has locked further charges for you, your team, or the
+   Proxy. Contact your administrator.
+
+**503 ``proxy_misconfigured``.**
+   The Proxy has no usable Anthropic key. The administrator should confirm
+   ``SMARTER_ANTHROPIC_API_KEY`` in ``.env``, restart Smarter, and rerun the
+   two ``manage.py`` commands from Step 5.
+
+**Provider status stays ``pending`` or shows "verification failed".**
+   Wait 30 seconds first. If it persists, the Anthropic key is invalid or
+   revoked: create a new one, update ``.env``, and restart.
+
+**Apply error: "Model not found".**
+   The ``model`` value does not match Anthropic's identifier. Identifiers are
+   case-sensitive.
+
+**Manifest validation errors.**
+   Almost always YAML indentation. Compare your file with the output of
+   ``smarter manifest provider``.
+
+.. seealso::
+
+   - `Smarter Provider <https://docs.smarter.sh/smarter-resources/smarter-provider.html>`__
+   - `Smarter Proxy <https://docs.smarter.sh/smarter-resources/smarter-proxy.html>`__
+   - `Smarter API Manifests <https://docs.smarter.sh/smarter-resources/provider/manifest.html>`__
